@@ -2,14 +2,39 @@
 	text-align: center;
 	display: flex;
 	flex-direction: column;
+	height: 100vh;
+
+	gap: 20px;
+}
+
+.input,
+button {
+	padding: 10px;
 }
 
 .lanes {
-	margin-top: 10%;
 	display: flex;
 	justify-content: space-evenly;
 }
 
-.lane {
+.counter {
 	list-style: none;
+	width: 100px;
+	height: 100px;
+	border: 1px solid black;
+	border-radius: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.lane-item {
+	margin-top: 10px;
+	width: 100px;
+	height: 100px;
+	border: 1px solid black;
+	border-radius: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

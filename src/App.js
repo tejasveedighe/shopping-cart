@@ -35,7 +35,7 @@ function App() {
 	}
 
 	useEffect(() => {
-		const timer = setTimeout(() => {
+		const timer = setInterval(() => {
 			let newLanes = [...lanes];
 			newLanes = newLanes.map((lane) => {
 				if (lane[0] > 0) lane[0] = lane[0] - 1;
@@ -44,15 +44,20 @@ function App() {
 			});
 
 			setLanes(newLanes);
-		}, 10000);
+		}, 1000);
+		return () => {
+			clearInterval(timer);
+		};
 	});
 
 	return (
 		<div className="App">
-			<form onSubmit={handleSubmit}>
+			<form className="form" onSubmit={handleSubmit}>
 				<input
+					className="input"
 					value={input}
 					type="number"
+					required
 					placeholder="Enter Cart Items"
 					onChange={(e) => setInput(e.target.valueAsNumber)}
 				/>
@@ -63,7 +68,7 @@ function App() {
 				{lanes.map((lane, index) => {
 					return (
 						<div className="lane" key={index}>
-							X
+							<div className="counter">Counter: {index + 1}</div>
 							{lane.map((item, index) => {
 								return (
 									<li className="lane-item" key={index}>
