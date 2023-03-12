@@ -1,19 +1,15 @@
 .App {
-  text-align: center;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
 }
 
 .lanes {
-  margin: 10% auto;
-  display: flex;
+	margin-top: 10%;
+	display: flex;
+	justify-content: space-evenly;
 }
 
-.lanes > .checkout-lane {
-  border: 1px solid black;
-  border-radius: 10px;
-  padding: 10px 10px;
-  margin: auto;
-}
-
-.items {
-  list-style: none;
+.lane {
+	list-style: none;
 }
