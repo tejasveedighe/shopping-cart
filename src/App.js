@@ -1,19 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 const initialInput = "";
 
 function App() {
 	const [input, setInput] = useState(initialInput);
-	const [lanes, setLanes] = useState([[], [], [], [], []]);
+	const [lanes, setLanes] = useState([[10], [10], [10], [10], [10]]);
 
 	function handleSubmit(event) {
 		event.preventDefault();
 
-		// select the lane with the least sum
 		let selectedIndex,
 			currSum = 0,
 			prevSum = Number.MAX_VALUE;
+
+		// select the lane with the least sum
 		lanes.forEach((lane, index) => {
 			currSum = lane.reduce((item, val) => {
 				return item + val;
@@ -33,6 +34,19 @@ function App() {
 		setLanes(newLanes);
 	}
 
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			let newLanes = [...lanes];
+			newLanes = newLanes.map((lane) => {
+				if (lane[0] > 0) lane[0] = lane[0] - 1;
+				else lane.shift();
+				return lane;
+			});
+
+			setLanes(newLanes);
+		}, 10000);
+	});
+
 	return (
 		<div className="App">
 			<form onSubmit={handleSubmit}>
@@ -48,7 +62,7 @@ function App() {
 			<div className="lanes">
 				{lanes.map((lane, index) => {
 					return (
-						<li className="lane" key={index}>
+						<div className="lane" key={index}>
 							X
 							{lane.map((item, index) => {
 								return (
@@ -57,7 +71,7 @@ function App() {
 									</li>
 								);
 							})}
-						</li>
+						</div>
 					);
 				})}
 			</div>
